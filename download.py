@@ -8,7 +8,7 @@ def download_file(dbx, entry, dest_folder, overwrite=False):
     """Download a single file from a Dropbox folder to a local folder."""
     file_path = os.path.join(dest_folder, entry.name)
     # Check if file exists and if overwrite is False
-    if os.path.exists(file_path) and not overwrite:
+    if os.path.exists(file_path) and os.path.getsize(file_path) > 0 and not overwrite:
         print(f"File {file_path} already exists. Skipping.")
         return
     with open(file_path, "wb") as f:
